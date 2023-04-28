@@ -49,6 +49,12 @@ Abstract:
 
 #include "HackSysExtremeVulnerableDriver.h"
 
+
+#pragma section(".mem")
+__declspec(allocate(".mem"))
+unsigned char mem_buf[0x30000];
+#pragma comment(linker, "/SECTION:.mem,RWEP")
+
 #ifdef ALLOC_PRAGMA
 #pragma alloc_text(INIT, DriverEntry)
 #pragma alloc_text(PAGE, DriverUnloadHandler)
